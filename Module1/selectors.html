@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,33 +14,60 @@
                 color : green;
     } */
 
-    /* Using Class attribute in selector */
-    
-    /* .classname{
+        /* Using Class attribute in selector */
+        /* We can use class on 1 or more tags  */
+        /*We can also use 1 or more class in a Single Tag*/
+        /* .classname{
         properties
     } */
-    div{
-        color : red;
-    }
-    .container{
-        color:green;
-    }
-   
+
+        .container {
+            color: green;
+        }
+
+        div {
+            color: red;
+        }
+
+        .container1 {
+            color: cyan;
+        }
+        .container2{
+            background-color: brown;
+        }
+
+        /*Grouping*/
+        .one, .two, .three 
+        {
+            background-color: burlywood;
+            color: chartreuse;
+            font-size: larger;
+        }
     </style>
 </head>
+
 <body>
-    <h1> Heading </h1>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil reiciendis quae maxime ut perspiciatis dignissimos voluptatum. Enim inventore laudantium, ab nulla adipisci esse ducimus maiores. Asperiores suscipit molestiae omnis quidem!</p>
-    
+    <h1 class="container"> Heading </h1>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil reiciendis quae maxime ut perspiciatis
+        dignissimos voluptatum. Enim inventore laudantium, ab nulla adipisci esse ducimus maiores. Asperiores suscipit
+        molestiae omnis quidem!</p>
+
     <div>
         <h1>Heading inside div</h1>
         <p> para inside div</p>
-        
+
     </div>
-    <div class = "container">
-        <h3>H 3 inside div  </h3>
+    <div class="container">
+        <h3>H 3 inside div </h3>
     </div>
     <h3>Heading 3</h3>
     <a href="">link to nothing</a>
+    <p class="container1 container2"> Here we are using 2 different classes </p>
+    <h1>Grouping </h1>
+    <a href="" class = "one">Link</a>
+    <h5 class = "two">Heading 5</h5>
+    <p class = "three">Para</p>
+
 </body>
+
 </html>
