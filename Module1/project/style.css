@@ -17,6 +17,11 @@ ul{
     list-style-type: none;
     justify-content:space-evenly;
 }
+ li:hover
+{
+    cursor:pointer;
+    color: orange;
+}
 nav{
     width : 60vw;
     margin-top: 10px;
