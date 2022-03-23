@@ -5,6 +5,7 @@ let extensionname = path.extname("/Users/siddhantjaiswal/Desktop/FJP - MERN/Modu
 console.log(extensionname);
 
 let basename = path.basename(__filename);
+
 let newFile = path.join(__dirname, "test.js");
 console.log(newFile);
 

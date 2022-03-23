@@ -7,13 +7,26 @@ let fs = require("fs");
 let path = require("path");
 let filepath = path.join(__dirname, "testing.txt");
 console.log(filepath);
-//write file sync : first it will check that if the file already exist or not, if yes it will override else create and add the content.
+//write file sync :  first it will check that if the file already exist or not, if yes it will override else create and add the content.
 
-fs.writeFileSync(filepath, "Hey there, Check it out!");
+//CREATE  
+fs.writeFileSync(filepath, "HELLO SIDDHANT");
 
+//READ
+let content = fs.readFileSync(filepath, 'utf-8');
+
+
+//REPLACING A PARTICULAR VALUE
+let val = content.replace("SIDDHANT", "RAHUL") ;
+fs.writeFileSync(filepath, val);
+
+
+//UPDATE
 fs.appendFileSync(filepath, "adding new Elements");
 
+//DELETE
 fs.unlinkSync(filepath);
+
 
 
 
