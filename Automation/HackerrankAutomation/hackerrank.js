@@ -45,5 +45,29 @@ return pageTypepromise;
 return clickPromise;
  }).then(function(){
     console.log("LOGIN SUCCESSFULL");
- });
+   let waitPromise = page.waitForSelector('[data-automation="algorithms"]');
+   return waitPromise;
+ }).then(function(){
+   let pageOpenPromise = page.click('[data-automation="algorithms"]');
+   return pageOpenPromise;
+ }).then(function(){
+   let waitForSelector = page.waitForSelector('.filter-group');
+   return waitForSelector;
+    }).then(function(){
+ 
+      console.log("HERE 1");
+      let domSelectPromise = page.evaluate(function(){
+         // console.log("HERE 2");
+         let selectAllDivs = document.querySelectorAll('.filter-group');
+         let div = selectAllDivs[3];
+         let clickSelector = div.querySelector(".ui-checklist-list-item input" );
+         console.log("ADDING FILTER")
+         clickSelector.click();
+         return;   
+
+      });
+      return domSelectPromise;
+    }).then(function(){
+       console.log("WARMUP Selctor");
+    });
 
