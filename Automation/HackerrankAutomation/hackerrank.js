@@ -1,36 +1,34 @@
  //USER ID : kevebe6754@viemery.com
 //  Password : 12345678
  const puppeteer = require('puppeteer');
- let browserPromise = puppeteer.launch({headless: false});
-  let page ;
+ let browserPromise = puppeteer.launch({headless: false, args:['--start-fullscreen'], defaultViewport: null});
+   let page ;
  browserPromise.then(function(browser){
     console.log("BROWSER IS OPENED"); 
+    browser.newPage().then(function(paging){
+       paging.goto('https://github.com/SiddhantJaiswal-0125');
+
+    });
+
     let pagePromise = browser.newPage();
     return pagePromise;
  }).then(function(webPage){
     console.log("Page is Opened");
     page = webPage; 
    let urlPromise = webPage.goto("https://www.hackerrank.com/");
+   return urlPromise;
  }).then(function() {
-    console.log("HackerRank Page is Opened");
-    //FOR CLICKING LOGIN TAB ON (LOGIN - SIGNUP body)
-    let waitPromise =  page.waitForSelector('ul.menu a'); 
-    return waitPromise;
- }).then(function(){
-    console.log("Button is Clicked");
-   let loggedIn =  page.click('ul.menu a');
-   return loggedIn;
- }).then(function(){
+   return waitandClick('ul.menu a',page);
+}
+ 
+ )
+ 
+ .then(function(){
 
-   //FOR GETTING LOGIN AS DEVELOPER TAG
-     let waitPromise = page.waitForSelector('.fl-button-wrap.fl-button-width-auto.fl-button-left a');
-     return waitPromise;
- }).then(function(){
-   let clickPromise =  page.click('.fl-button-wrap.fl-button-width-auto.fl-button-left a');
-   // input 1 = #input-1
-   // Input 2 = #input-2
-   return clickPromise;
- }).then(function(){
+
+return waitandClick('.fl-button-wrap.fl-button-width-auto.fl-button-left a', page);})
+ 
+ .then(function(){
 let waitpromise = page.waitForSelector('#input-1');
 return waitpromise;
  }).then(function(){
@@ -44,30 +42,48 @@ return pageTypepromise;
    let clickPromise = page.click('button[data-analytics="LoginPassword"]');
 return clickPromise;
  }).then(function(){
-    console.log("LOGIN SUCCESSFULL");
-   let waitPromise = page.waitForSelector('[data-automation="algorithms"]');
-   return waitPromise;
- }).then(function(){
-   let pageOpenPromise = page.click('[data-automation="algorithms"]');
-   return pageOpenPromise;
- }).then(function(){
+return waitandClick('[data-automation="algorithms"]',page);
+})
+
+ .then(function(){
    let waitForSelector = page.waitForSelector('.filter-group');
    return waitForSelector;
     }).then(function(){
- 
-      console.log("HERE 1");
       let domSelectPromise = page.evaluate(function(){
-         // console.log("HERE 2");
-         let selectAllDivs = document.querySelectorAll('.filter-group');
+       let selectAllDivs = document.querySelectorAll('.filter-group');
          let div = selectAllDivs[3];
          let clickSelector = div.querySelector(".ui-checklist-list-item input" );
-         console.log("ADDING FILTER")
-         clickSelector.click();
-         return;   
+      clickSelector.click();
+      return; 
+  
 
       });
       return domSelectPromise;
     }).then(function(){
        console.log("WARMUP Selctor");
+
+       return page.waitForSelector('.ui-btn.ui-btn-normal.primary-cta.ui-btn-line-primary.ui-btn-styled ');
+
+       //LIST OF QUESTIONS
+    }).then(function(){
+
+      //   return page.click('.ui-btn.ui-btn-normal.primary-cta.ui-btn-line-primary.ui-btn-styled');
     });
 
+    function waitandClick(selector,page)
+    {
+       console.log("Selector  "+selector);
+       return new Promise( function(resolve, reject){
+          let waitPromise = page.waitForSelector(selector);
+          waitPromise.then(function(){
+             let click =  page.click(selector);
+             return click;
+          }).then(
+            function(){
+               resolve();
+            }
+          );
+
+       });
+
+    }
