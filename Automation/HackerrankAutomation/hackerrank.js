@@ -81,7 +81,7 @@ browserPromise.then(function (browser) {
       for (let i = 1; i < questionsArr.length; i++) {
          questionPromise = questionPromise.then(function () {
             let nextQuestionPromise = questionSolver(questionsArr[i], code.answers[i]);
-            return nextQuestionPromise;
+            return nextQuestionPromise; 
          })
       }
       return questionPromise;
@@ -112,7 +112,7 @@ function questionSolver(question, answer) {
       }).then(function () {
          return waitAndClick('.ui-tooltip-wrapper textarea');
       }).then(function () {
-         let typePromise = page.type('.ui-tooltip-wrapper textarea', answer);
+         let typePromise = page.type('.ui-tooltip-wrapper textarea', answer,);
          return typePromise;
       }).then(function () {
          let holdControl = page.keyboard.down('Control');
